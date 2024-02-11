@@ -17,8 +17,9 @@ echo "Configuring git user..."
 git config user.email "developers@erpnext.com"
 git config user.name "frappe-pr-bot"
 
-echo "Show git remote..."
-git remote -v
+# Here, the git remote is a local file path by default
+echo "Setting the correct git remote..."
+git remote set-url upstream https://github.com/barredterra/frappe.git
 
 echo "Commiting changes..."
 git checkout -b update-pot-file
