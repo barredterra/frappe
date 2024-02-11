@@ -11,8 +11,13 @@ cd ./frappe-bench || exit
 echo "Generating POT file..."
 bench generate-pot-file --app frappe
 
-echo "Commiting changes..."
 cd "${GITHUB_WORKSPACE}"
+
+echo "Configuring up git user..."
+git config user.email "developers@erpnext.com"
+git config user.name "frappe-pr-bot"
+
+echo "Commiting changes..."
 git checkout -b update-pot-file
 git add .
 git commit -m "chore: update POT file"
