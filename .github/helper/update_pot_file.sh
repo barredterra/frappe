@@ -22,8 +22,8 @@ echo "Setting the correct git remote..."
 git remote set-url upstream https://github.com/barredterra/frappe.git
 
 echo "Creating a new branch..."
-isodate = $(date -u +"%Y-%m-%d")
-branch_name = "update-pot-file_${isodate}"
+isodate=$(date -u +"%Y-%m-%d")
+branch_name="update-pot-file_${isodate}"
 git checkout -b "${branch_name}"
 
 echo "Commiting changes..."
