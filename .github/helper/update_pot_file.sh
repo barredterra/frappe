@@ -26,5 +26,8 @@ git checkout -b update-pot-file
 git add .
 git commit -m "chore: update POT file"
 
+gh auth setup-git
+git push -u upstream update-pot-file
+
 echo "Creating a PR..."
 gh pr create --fill --base "${BRANCH}"
