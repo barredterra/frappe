@@ -17,10 +17,13 @@ echo "Configuring git user..."
 git config user.email "developers@erpnext.com"
 git config user.name "frappe-pr-bot"
 
+echo "Configure git remote..."
+git remote add upstream https://github.com/barredterra/frappe.git
+
 echo "Commiting changes..."
 git checkout -b update-pot-file
 git add .
 git commit -m "chore: update POT file"
 
 echo "Creating a PR..."
-gh pr create --fill --base "${BRANCH}" --head update-pot-file
+gh pr create --fill --base "${BRANCH}"
