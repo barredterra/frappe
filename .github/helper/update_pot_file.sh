@@ -23,7 +23,7 @@ git remote set-url upstream https://github.com/barredterra/frappe.git
 
 echo "Creating a new branch..."
 isodate=$(date -u +"%Y-%m-%d")
-branch_name="update-pot-file_${isodate}"
+branch_name="pot_${BASE_BRANCH}_${isodate}"
 git checkout -b "${branch_name}"
 
 echo "Commiting changes..."
@@ -34,4 +34,4 @@ gh auth setup-git
 git push -u upstream "${branch_name}"
 
 echo "Creating a PR..."
-gh pr create --fill --base "${BRANCH}" --head "${branch_name}"
+gh pr create --fill --base "${BASE_BRANCH}" --head "${branch_name}" -R barredterra/frappe
