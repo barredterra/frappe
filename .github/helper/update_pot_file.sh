@@ -21,13 +21,17 @@ git config user.name "frappe-pr-bot"
 echo "Setting the correct git remote..."
 git remote set-url upstream https://github.com/barredterra/frappe.git
 
+echo "Creating a new branch..."
+isodate = $(date -u +"%Y-%m-%d")
+branch_name = "update-pot-file_${isodate}"
+git checkout -b "${branch_name}"
+
 echo "Commiting changes..."
-git checkout -b update-pot-file
 git add .
 git commit -m "chore: update POT file"
 
 gh auth setup-git
-git push -u upstream update-pot-file
+git push -u upstream "${branch_name}"
 
 echo "Creating a PR..."
-gh pr create --fill --base "${BRANCH}"
+gh pr create --fill --base "${BRANCH}" --head "${branch_name}"
