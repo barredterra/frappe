@@ -17,8 +17,8 @@ echo "Configuring git user..."
 git config user.email "developers@erpnext.com"
 git config user.name "frappe-pr-bot"
 
-echo "Configure git remote..."
-git remote add upstream https://github.com/barredterra/frappe.git
+echo "Show git remote..."
+git remote -v
 
 echo "Commiting changes..."
 git checkout -b update-pot-file
