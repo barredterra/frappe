@@ -23,4 +23,4 @@ git add .
 git commit -m "chore: update POT file"
 
 echo "Creating a PR..."
-gh pr create --base "${BRANCH}" --head update-pot-file
+gh pr create --fill --base "${BRANCH}" --head update-pot-file
