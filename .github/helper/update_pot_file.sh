@@ -11,9 +11,9 @@ cd ./frappe-bench || exit
 echo "Generating POT file..."
 bench generate-pot-file --app frappe
 
-cd "${GITHUB_WORKSPACE}"
+cd ./apps/frappe || exit
 
-echo "Configuring up git user..."
+echo "Configuring git user..."
 git config user.email "developers@erpnext.com"
 git config user.name "frappe-pr-bot"
 
