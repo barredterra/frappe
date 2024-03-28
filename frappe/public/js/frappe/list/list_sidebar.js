@@ -270,7 +270,7 @@ frappe.views.ListSidebar = class ListSidebar {
 				this.insights_banner.remove();
 			}
 
-			const message = "Get more insights with";
+			const message = __("Get more insights with");
 			const link = "https://frappe.io/s/insights";
 			const cta = "Frappe Insights";
 
