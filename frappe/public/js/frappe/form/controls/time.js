@@ -1,3 +1,5 @@
+import AirDatepicker from "air-datepicker/dist/air-datepicker.js";
+
 frappe.ui.form.ControlTime = class ControlTime extends frappe.ui.form.ControlDate {
 	set_formatted_input(value) {
 		super.set_formatted_input(value);
@@ -75,13 +77,12 @@ frappe.ui.form.ControlTime = class ControlTime extends frappe.ui.form.ControlDat
 		}
 	}
 	set_datepicker() {
-		this.$input.datepicker(this.datepicker_options);
-		this.datepicker = this.$input.data("datepicker");
+		this.datepicker = new AirDatepicker(this.$input.get(0), this.datepicker_options);
 
-		this.datepicker.$datepicker.find('[data-action="today"]').click(() => {
-			this.datepicker.selectDate(frappe.datetime.now_time(true));
-			this.datepicker.hide();
-		});
+		// this.datepicker.$datepicker.find('[data-action="today"]').click(() => {
+		// 	this.datepicker.selectDate(frappe.datetime.now_time(true));
+		// 	this.datepicker.hide();
+		// });
 		if (this.datepicker.opts.timeFormat.indexOf("s") == -1) {
 			// No seconds in time format
 			const $tp = this.datepicker.timepicker;

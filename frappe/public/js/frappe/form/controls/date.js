@@ -1,3 +1,5 @@
+import AirDatepicker from "air-datepicker/dist/air-datepicker.js";
+
 frappe.ui.form.ControlDate = class ControlDate extends frappe.ui.form.ControlData {
 	static trigger_change_on_input_event = false;
 	make_input() {
@@ -48,9 +50,6 @@ frappe.ui.form.ControlDate = class ControlDate extends frappe.ui.form.ControlDat
 
 		let lang = "en";
 		frappe.boot.user && (lang = frappe.boot.user.language);
-		if (!$.fn.datepicker.language[lang]) {
-			lang = "en";
-		}
 
 		let date_format =
 			sysdefaults && sysdefaults.date_format ? sysdefaults.date_format : "yyyy-mm-dd";
@@ -58,7 +57,6 @@ frappe.ui.form.ControlDate = class ControlDate extends frappe.ui.form.ControlDat
 		this.today_text = __("Today");
 		this.date_format = frappe.defaultDateFormat;
 		this.datepicker_options = {
-			language: lang,
 			autoClose: true,
 			todayButton: true,
 			dateFormat: date_format,
@@ -86,15 +84,14 @@ frappe.ui.form.ControlDate = class ControlDate extends frappe.ui.form.ControlDat
 	}
 
 	set_datepicker() {
-		this.$input.datepicker(this.datepicker_options);
-		this.datepicker = this.$input.data("datepicker");
+		this.datepicker = new AirDatepicker(this.$input.get(0), this.datepicker_options);
 
 		// today button didn't work as expected,
 		// so explicitly bind the event
-		this.datepicker.$datepicker.find('[data-action="today"]').click(() => {
-			this.datepicker.selectDate(this.get_now_date());
-			this.datepicker.hide();
-		});
+		// this.datepicker.$datepicker.find('[data-action="today"]').click(() => {
+		// 	this.datepicker.selectDate(this.get_now_date());
+		// 	this.datepicker.hide();
+		// });
 	}
 	update_datepicker_position() {
 		if (!this.frm) return;
